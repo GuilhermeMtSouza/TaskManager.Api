@@ -43,9 +43,11 @@ namespace TaskManager.Application.Services
             return _taskRepository.GetById(id);
         }
 
-        public Task<TaskModel> Update(TaskModel item)
+        public Task<TaskModel> Update(Guid id,RequestUpdateTaskDto item)
         {
-            return _taskRepository.Update(item);
+            var newItem = _mapper.Map<TaskModel>(item);
+            newItem.Id = id;
+            return _taskRepository.Update(id, newItem);
         }
     }
 }

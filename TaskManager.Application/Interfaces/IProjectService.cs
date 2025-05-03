@@ -7,7 +7,7 @@ namespace TaskManager.Application.Interfaces
     {
         Task<List<ProjectModel>> GetAllProjectsAsync();
         Task<ProjectModel> Add(RequestCreateProjectDto item);
-        Task<ProjectModel> Update(Guid Id, RequestCreateProjectDto item);
+        Task<ProjectModel> Update(Guid Id, RequestUpdateProjectDto item);
         Task<bool> Delete(Guid id);
         Task<ProjectModel> GetById(Guid id);
     }

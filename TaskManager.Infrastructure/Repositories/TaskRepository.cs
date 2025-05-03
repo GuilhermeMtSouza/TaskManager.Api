@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using TaskManager.Domain.Models;
 using TaskManager.Infrastructure.Interfaces;
 
@@ -6,9 +7,10 @@ namespace TaskManager.Infrastructure.Repositories
 {
     public class TaskRepository : BaseRepository, ITaskRepository
     {
-
-        public TaskRepository(AppDbContext context) : base(context)
+        private readonly IMapper _mapper;
+        public TaskRepository(AppDbContext context, IMapper mapper) : base(context)
         {
+            _mapper = mapper;
         }
 
         public async Task<List<TaskModel>> GetAllTasksAsync()
@@ -44,21 +46,27 @@ namespace TaskManager.Infrastructure.Repositories
             return true;
         }
 
-        public Task<TaskModel> Update(TaskModel item)
+        public Task<TaskModel> Update(Guid id, TaskModel item)
         {
-            var task = context.Tasks.FirstOrDefault(x => x.Id == item.Id);
+            var task = context.Tasks.AsNoTracking().FirstOrDefault(x => x.Id == id);
+
             if (task is null)
             {
                 throw new InvalidOperationException("Task not found");
             }
+
             var parent = context.Projects.FirstOrDefault(x => x.Id == item.ProjectId);
             if (parent is null)
             {
                 throw new InvalidOperationException("Project not found");
             }
-            context.Tasks.Update(item);
+
+            var updatedItem = _mapper.Map(item, task);
+
+            context.Tasks.Update(updatedItem);
             context.SaveChanges();
-            return Task.FromResult(item);
+
+            return Task.FromResult(updatedItem);
         }
 
         public async Task<TaskModel> GetById(Guid id)

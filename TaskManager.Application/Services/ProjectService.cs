@@ -36,7 +36,7 @@ namespace TaskManager.Application.Services
             return _projectRepository.GetById(id);
         }
 
-        public Task<ProjectModel> Update(Guid Id, RequestCreateProjectDto item)
+        public Task<ProjectModel> Update(Guid Id, RequestUpdateProjectDto item)
         {
             var Updated = _mapper.Map<ProjectModel>(item);
             Updated.Id = Id;

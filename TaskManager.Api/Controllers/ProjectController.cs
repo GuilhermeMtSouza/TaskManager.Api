@@ -36,9 +36,9 @@ namespace TaskManager.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Update(Guid Id, [FromBody] RequestCreateProjectDto projectModel)
+        public async Task<IActionResult> Update(Guid id, [FromBody] RequestUpdateProjectDto projectModel)
         {
-            return Ok(await _projectService.Update(Id, projectModel));
+            return Ok(await _projectService.Update(id, projectModel));
         }
 
         [HttpDelete("{id}")]

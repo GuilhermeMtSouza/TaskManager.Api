@@ -12,7 +12,7 @@ namespace TaskManager.Infrastructure.Interfaces
         Task<List<TaskModel>> GetAllTasksAsync();
         Task<TaskModel> Add(TaskModel item);
         Task<bool> Delete(Guid id);
-        Task<TaskModel> Update(TaskModel item);
+        Task<TaskModel> Update(Guid id, TaskModel item);
         Task<TaskModel> GetById(Guid id);
     }
 }

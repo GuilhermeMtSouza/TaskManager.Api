@@ -16,10 +16,12 @@ namespace TaskManager.Application.Profiles
         {
             #region Project
             CreateMap<RequestCreateProjectDto, ProjectModel>();
+            CreateMap<RequestUpdateProjectDto, ProjectModel>();
             #endregion
 
             #region Task
             CreateMap<RequestCreateTaskDto, TaskModel>();
+            CreateMap<RequestUpdateTaskDto, TaskModel>();
             #endregion
         }
     }

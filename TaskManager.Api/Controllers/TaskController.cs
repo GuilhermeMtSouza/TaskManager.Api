@@ -35,10 +35,10 @@ namespace TaskManager.Api.Controllers
             return Ok(await _taskService.Add(taskModel));
         }
 
-        [HttpPut]
-        public async Task<IActionResult> Update([FromBody] TaskModel taskModel)
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Update(Guid id,[FromBody] RequestUpdateTaskDto taskModel)
         {
-            return Ok(await _taskService.Update(taskModel));
+            return Ok(await _taskService.Update(id, taskModel));
         }
 
         [HttpDelete("{id}")]
