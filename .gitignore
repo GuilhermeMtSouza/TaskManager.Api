@@ -10,6 +10,52 @@
 *.userosscache
 *.sln.docstates
 
+# Docker
+**/docker-compose.override.yml
+**/.docker/
+
+# Build results
+bin/
+obj/
+[Bb]uild/
+[Ll]ogs/
+*.log
+*.tlog
+*.vscode/
+
+# User-specific files
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# OS-generated files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+desktop.ini
+
+# Rider project files
+.idea/
+*.sln.iml
+
+# Visual Studio Code settings
+.vscode/
+
+# DotCover
+*.dotCover
+
+# Test Results
+TestResults/
+*.coverage
+*.coveragexml
+*.testsettings
+*.vsmdi
+
+# NUnit
+*.VisualState.xml
+TestResult.xml
+
 # User-specific files (MonoDevelop/Xamarin Studio)
 *.userprefs
 
